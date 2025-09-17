@@ -1,9 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [react()],
-  base: process.env.NODE_ENV === 'production' ? '/vrp-solution-website/' : './',
+  base: command === 'build' ? '/vrp-solution/' : './',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
@@ -21,4 +21,4 @@ export default defineConfig({
     port: 3000,
     open: true
   }
-})
+}))

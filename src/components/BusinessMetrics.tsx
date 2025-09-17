@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { TrendingUp, Clock, DollarSign, Users, Truck, Target, BarChart3 } from 'lucide-react'
+import { TrendingUp, Clock, DollarSign, Truck, Target, BarChart3 } from 'lucide-react'
 
 export const TAMSAMSOMChart: React.FC = () => {
   return (

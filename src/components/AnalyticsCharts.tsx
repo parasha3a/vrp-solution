@@ -130,7 +130,11 @@ export const MarketChart: React.FC = () => {
         // Draw main bar with rounded corners
         ctx.fillStyle = grad
         ctx.beginPath()
-        ctx.roundRect(x - barWidth / 2, y, barWidth, height, [8, 8, 0, 0])
+        if (ctx.roundRect) {
+          ctx.roundRect(x - barWidth / 2, y, barWidth, height, [8, 8, 0, 0])
+        } else {
+          ctx.rect(x - barWidth / 2, y, barWidth, height)
+        }
         ctx.fill()
         
         // Add glow effect
@@ -149,7 +153,11 @@ export const MarketChart: React.FC = () => {
         // Background for value with better positioning
         ctx.fillStyle = 'rgba(0, 0, 0, 0.8)'
         ctx.beginPath()
-        ctx.roundRect(x - textWidth / 2 - 10, y - 40, textWidth + 20, 28, 14)
+        if (ctx.roundRect) {
+          ctx.roundRect(x - textWidth / 2 - 10, y - 40, textWidth + 20, 28, 14)
+        } else {
+          ctx.rect(x - textWidth / 2 - 10, y - 40, textWidth + 20, 28)
+        }
         ctx.fill()
         
         // Value text with better color
@@ -284,7 +292,11 @@ export const ROIChart: React.FC = () => {
         ctx.shadowBlur = 8
         ctx.fillStyle = beforeGrad
         ctx.beginPath()
-        ctx.roundRect(baseX, axisBottom - baselineHeight, barWidth, baselineHeight, [6, 6, 0, 0])
+        if (ctx.roundRect) {
+          ctx.roundRect(baseX, axisBottom - baselineHeight, barWidth, baselineHeight, [6, 6, 0, 0])
+        } else {
+          ctx.rect(baseX, axisBottom - baselineHeight, barWidth, baselineHeight)
+        }
         ctx.fill()
         ctx.shadowBlur = 0
 
@@ -293,7 +305,11 @@ export const ROIChart: React.FC = () => {
         ctx.shadowBlur = 12
         ctx.fillStyle = afterGrad
         ctx.beginPath()
-        ctx.roundRect(improvedX, axisBottom - improvedHeight, barWidth, improvedHeight, [8, 8, 0, 0])
+        if (ctx.roundRect) {
+          ctx.roundRect(improvedX, axisBottom - improvedHeight, barWidth, improvedHeight, [8, 8, 0, 0])
+        } else {
+          ctx.rect(improvedX, axisBottom - improvedHeight, barWidth, improvedHeight)
+        }
         ctx.fill()
         ctx.shadowBlur = 0
 
@@ -307,8 +323,13 @@ export const ROIChart: React.FC = () => {
         const improvedTextWidth = ctx.measureText(improvedText).width
         ctx.fillStyle = 'rgba(0, 0, 0, 0.85)'
         ctx.beginPath()
-        ctx.roundRect(improvedX + barWidth / 2 - improvedTextWidth / 2 - 8, 
-                     axisBottom - improvedHeight - 45, improvedTextWidth + 16, 24, 12)
+        if (ctx.roundRect) {
+          ctx.roundRect(improvedX + barWidth / 2 - improvedTextWidth / 2 - 8, 
+                       axisBottom - improvedHeight - 45, improvedTextWidth + 16, 24, 12)
+        } else {
+          ctx.rect(improvedX + barWidth / 2 - improvedTextWidth / 2 - 8, 
+                   axisBottom - improvedHeight - 45, improvedTextWidth + 16, 24)
+        }
         ctx.fill()
         
         // Improved value text
@@ -320,8 +341,13 @@ export const ROIChart: React.FC = () => {
         const baselineTextWidth = ctx.measureText(baselineText).width
         ctx.fillStyle = 'rgba(220, 38, 38, 0.9)'
         ctx.beginPath()
-        ctx.roundRect(baseX + barWidth / 2 - baselineTextWidth / 2 - 8, 
-                     axisBottom - baselineHeight - 45, baselineTextWidth + 16, 24, 12)
+        if (ctx.roundRect) {
+          ctx.roundRect(baseX + barWidth / 2 - baselineTextWidth / 2 - 8, 
+                       axisBottom - baselineHeight - 45, baselineTextWidth + 16, 24, 12)
+        } else {
+          ctx.rect(baseX + barWidth / 2 - baselineTextWidth / 2 - 8, 
+                   axisBottom - baselineHeight - 45, baselineTextWidth + 16, 24)
+        }
         ctx.fill()
         
         // Baseline value text
@@ -350,12 +376,20 @@ export const ROIChart: React.FC = () => {
       // Before legend with background
       ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
       ctx.beginPath()
-      ctx.roundRect(pad - 5, pad * 0.5, 120, 25, 12)
+      if (ctx.roundRect) {
+        ctx.roundRect(pad - 5, pad * 0.5, 120, 25, 12)
+      } else {
+        ctx.rect(pad - 5, pad * 0.5, 120, 25)
+      }
       ctx.fill()
       
       ctx.fillStyle = beforeGrad
       ctx.beginPath()
-      ctx.roundRect(pad, pad * 0.6, 16, 12, 3)
+      if (ctx.roundRect) {
+        ctx.roundRect(pad, pad * 0.6, 16, 12, 3)
+      } else {
+        ctx.rect(pad, pad * 0.6, 16, 12)
+      }
       ctx.fill()
       ctx.fillStyle = '#ffffff'
       ctx.fillText('До внедрения', pad + 24, pad * 0.7)
@@ -363,12 +397,20 @@ export const ROIChart: React.FC = () => {
       // After legend with background  
       ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
       ctx.beginPath()
-      ctx.roundRect(W - pad - 130, pad * 0.5, 130, 25, 12)
+      if (ctx.roundRect) {
+        ctx.roundRect(W - pad - 130, pad * 0.5, 130, 25, 12)
+      } else {
+        ctx.rect(W - pad - 130, pad * 0.5, 130, 25)
+      }
       ctx.fill()
       
       ctx.fillStyle = afterGrad
       ctx.beginPath()
-      ctx.roundRect(W - pad - 125, pad * 0.6, 16, 12, 3)
+      if (ctx.roundRect) {
+        ctx.roundRect(W - pad - 125, pad * 0.6, 16, 12, 3)
+      } else {
+        ctx.rect(W - pad - 125, pad * 0.6, 16, 12)
+      }
       ctx.fill()
       ctx.fillStyle = '#ffffff'
       ctx.fillText('После внедрения', W - pad - 105, pad * 0.7)

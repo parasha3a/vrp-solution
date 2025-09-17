@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { CheckCircle, Shield, Clock, DollarSign, Users2, Truck, MapPin } from 'lucide-react'
+import { CheckCircle, Shield, Clock, DollarSign, Users2 } from 'lucide-react'
 import ThreeBackground from '../components/ThreeBackground'
 import { MarketChart, ROIChart, AnalyticsStats } from '../components/AnalyticsCharts'
 import { TAMSAMSOMChart, DeliveryMetrics, ROICalculator, TimelineChart } from '../components/BusinessMetrics'

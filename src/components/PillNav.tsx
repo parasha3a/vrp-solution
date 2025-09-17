@@ -42,7 +42,7 @@ const PillNav: React.FC<PillNavProps> = ({
   const hamburgerRef = useRef<HTMLDivElement | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const navItemsRef = useRef<HTMLDivElement | null>(null);
-  const logoRef = useRef<HTMLDivElement | null>(null);
+  const logoRef = useRef<HTMLAnchorElement | null>(null);
   
   const location = useLocation();
   const activeHref = location.pathname;

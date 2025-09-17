@@ -2,7 +2,6 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { 
   Cpu, 
-  Database, 
   Cloud, 
   Shield, 
   Zap, 
@@ -11,8 +10,7 @@ import {
   GitBranch,
   Server,
   Brain,
-  BarChart3,
-  Lock
+  BarChart3
 } from 'lucide-react'
 import ThreeBackground from '../components/ThreeBackground'
 
