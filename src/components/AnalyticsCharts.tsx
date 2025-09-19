@@ -64,20 +64,20 @@ export const MarketChart: React.FC = () => {
     }
 
     const drawChart = () => {
-      const ratio = 0.4
+      const ratio = 0.5
       const result = setupCanvas(canvas, ratio)
       if (!result.ctx) return
       
       const { ctx, width: W, height: H } = result
-      const pad = Math.round(Math.min(W, H) * 0.15)
+      const pad = Math.round(Math.min(W, H) * 0.12)
       const axisLeft = pad
-      const axisBottom = H - pad * 1.5
-      const chartHeight = H - pad * 2.5
+      const axisBottom = H - pad * 2.2
+      const chartHeight = H - pad * 3.5
 
-      const labels = ['Точность VRP', 'Скорость обработки', 'Экономия затрат']
+      const labels = ['Точность VRP', 'Скорость\nобработки', 'Экономия\nзатрат']
       const values = [99.9, 95, 40]
       const scales = [100, 100, 50]
-      const barWidth = Math.min(90, (W - pad * 2) / (labels.length * 1.8))
+      const barWidth = Math.min(80, (W - pad * 2) / (labels.length * 2))
       const gap = (W - pad * 2 - barWidth * labels.length) / (labels.length - 1 || 1)
 
       // Enhanced gradient with glow effect
@@ -145,39 +145,36 @@ export const MarketChart: React.FC = () => {
         ctx.fillRect(x - barWidth / 2, y, barWidth, height)
         ctx.shadowBlur = 0
         
-        // Value label with background
-        const valueText = values[i].toString() + (i === 2 ? '%' : '')
-        ctx.font = `700 ${Math.max(16, Math.round(H * 0.06))}px Inter, system-ui, sans-serif`
-        const textWidth = ctx.measureText(valueText).width
+        // Value label without background
+        const valueText = values[i].toString() + '%'
+        ctx.font = `800 ${Math.max(15, Math.round(H * 0.055))}px Inter, system-ui, sans-serif`
         
-        // Background for value with better positioning
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.8)'
-        ctx.beginPath()
-        if (ctx.roundRect) {
-          ctx.roundRect(x - textWidth / 2 - 10, y - 40, textWidth + 20, 28, 14)
-        } else {
-          ctx.rect(x - textWidth / 2 - 10, y - 40, textWidth + 20, 28)
-        }
-        ctx.fill()
-        
-        // Value text with better color
+        // Add text shadow for better readability
         ctx.fillStyle = '#ffffff'
         ctx.textBaseline = 'middle'
-        ctx.fillText(valueText, x, y - 26)
+        ctx.textAlign = 'center'
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.5)'
+        ctx.shadowBlur = 4
+        ctx.shadowOffsetX = 0
+        ctx.shadowOffsetY = 1
+        ctx.fillText(valueText, x, y - 25)
         
-        // Category label with better spacing and color
+        // Reset shadow
+        ctx.shadowColor = 'transparent'
+        ctx.shadowBlur = 0
+        ctx.shadowOffsetX = 0
+        ctx.shadowOffsetY = 0
+        
+        // Category label with improved multi-line handling
         ctx.fillStyle = '#f3f4f6'
         ctx.textBaseline = 'top'
-        ctx.font = `600 ${Math.max(13, Math.round(H * 0.05))}px Inter, system-ui, sans-serif`
+        ctx.font = `600 ${Math.max(11, Math.round(H * 0.035))}px Inter, system-ui, sans-serif`
         
-        // Multi-line text handling for better readability
-        const words = label.split(' ')
-        if (words.length > 1 && ctx.measureText(label).width > barWidth + 20) {
-          ctx.fillText(words[0], x, axisBottom + 12)
-          ctx.fillText(words.slice(1).join(' '), x, axisBottom + 30)
-        } else {
-          ctx.fillText(label, x, axisBottom + 18)
-        }
+        // Handle multi-line labels
+        const lines = label.split('\n')
+        lines.forEach((line, lineIndex) => {
+          ctx.fillText(line, x, axisBottom + 15 + lineIndex * 16)
+        })
       })
     }
 
@@ -188,18 +185,20 @@ export const MarketChart: React.FC = () => {
   }, [])
 
   return (
-    <figure className="glass p-6 rounded-2xl">
-      <figcaption className="text-lg font-semibold text-white mb-4 text-center">
+    <figure className="glass p-4 md:p-6 rounded-2xl">
+      <figcaption className="text-base md:text-lg font-semibold text-white mb-3 md:mb-4 text-center">
         Показатели эффективности VRP Solution
       </figcaption>
-      <canvas 
-        ref={canvasRef}
-        width={980} 
-        height={360} 
-        className="w-full h-auto"
-        role="img" 
-        aria-label="График показателей эффективности"
-      />
+      <div className="w-full overflow-hidden">
+        <canvas 
+          ref={canvasRef}
+          width={980} 
+          height={490} 
+          className="w-full h-auto max-w-full"
+          role="img" 
+          aria-label="График показателей эффективности"
+        />
+      </div>
     </figure>
   )
 }
@@ -227,22 +226,22 @@ export const ROIChart: React.FC = () => {
     }
 
     const drawChart = () => {
-      const ratio = 0.4
+      const ratio = 0.55
       const result = setupCanvas(canvas, ratio)
       if (!result.ctx) return
       
       const { ctx, width: W, height: H } = result
-      const pad = Math.round(Math.min(W, H) * 0.15)
+      const pad = Math.round(Math.min(W, H) * 0.12)
       const axisLeft = pad
-      const axisBottom = H - pad * 1.5
-      const chartHeight = H - pad * 2.5
+      const axisBottom = H - pad * 3
+      const chartHeight = H - pad * 4.5
 
-      const labels = ['Время доставки', 'Операц. затраты', 'Качество сервиса']
+      const labels = ['Время\nдоставки', 'Операц.\nзатраты', 'Качество\nсервиса']
       const baseline = [100, 100, 100]
       const improved = [75, 60, 125]
       const groupWidth = (W - pad * 2) / labels.length
-      const barWidth = Math.min(45, groupWidth * 0.35)
-      const pairGap = Math.min(20, groupWidth * 0.15)
+      const barWidth = Math.min(40, groupWidth * 0.3)
+      const pairGap = Math.min(15, groupWidth * 0.12)
 
       // Enhanced gradients
       const beforeGrad = ctx.createLinearGradient(0, 0, 0, H)
@@ -313,107 +312,96 @@ export const ROIChart: React.FC = () => {
         ctx.fill()
         ctx.shadowBlur = 0
 
-        // Value labels with backgrounds and better positioning
+        // Value labels with improved positioning
         const improvedText = `${improved[i]}%`
         const baselineText = `${baseline[i]}%`
         
-        ctx.font = `700 ${Math.max(13, Math.round(H * 0.05))}px Inter, system-ui, sans-serif`
+        ctx.font = `700 ${Math.max(11, Math.round(H * 0.04))}px Inter, system-ui, sans-serif`
         
-        // Background for improved value (positioned higher to avoid overlap)
+        // Background for improved value
         const improvedTextWidth = ctx.measureText(improvedText).width
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.85)'
+        ctx.fillStyle = 'rgba(34, 197, 94, 0.9)'
         ctx.beginPath()
         if (ctx.roundRect) {
-          ctx.roundRect(improvedX + barWidth / 2 - improvedTextWidth / 2 - 8, 
-                       axisBottom - improvedHeight - 45, improvedTextWidth + 16, 24, 12)
+          ctx.roundRect(improvedX + barWidth / 2 - improvedTextWidth / 2 - 6, 
+                       axisBottom - improvedHeight - 30, improvedTextWidth + 12, 20, 10)
         } else {
-          ctx.rect(improvedX + barWidth / 2 - improvedTextWidth / 2 - 8, 
-                   axisBottom - improvedHeight - 45, improvedTextWidth + 16, 24)
+          ctx.rect(improvedX + barWidth / 2 - improvedTextWidth / 2 - 6, 
+                   axisBottom - improvedHeight - 30, improvedTextWidth + 12, 20)
         }
         ctx.fill()
         
         // Improved value text
         ctx.fillStyle = '#ffffff'
         ctx.textBaseline = 'middle'
-        ctx.fillText(improvedText, improvedX + barWidth / 2, axisBottom - improvedHeight - 33)
+        ctx.fillText(improvedText, improvedX + barWidth / 2, axisBottom - improvedHeight - 20)
         
-        // Background for baseline value (positioned higher and to the left)
+        // Background for baseline value
         const baselineTextWidth = ctx.measureText(baselineText).width
         ctx.fillStyle = 'rgba(220, 38, 38, 0.9)'
         ctx.beginPath()
         if (ctx.roundRect) {
-          ctx.roundRect(baseX + barWidth / 2 - baselineTextWidth / 2 - 8, 
-                       axisBottom - baselineHeight - 45, baselineTextWidth + 16, 24, 12)
+          ctx.roundRect(baseX + barWidth / 2 - baselineTextWidth / 2 - 6, 
+                       axisBottom - baselineHeight - 30, baselineTextWidth + 12, 20, 10)
         } else {
-          ctx.rect(baseX + barWidth / 2 - baselineTextWidth / 2 - 8, 
-                   axisBottom - baselineHeight - 45, baselineTextWidth + 16, 24)
+          ctx.rect(baseX + barWidth / 2 - baselineTextWidth / 2 - 6, 
+                   axisBottom - baselineHeight - 30, baselineTextWidth + 12, 20)
         }
         ctx.fill()
         
         // Baseline value text
         ctx.fillStyle = '#ffffff'
-        ctx.fillText(baselineText, baseX + barWidth / 2, axisBottom - baselineHeight - 33)
+        ctx.fillText(baselineText, baseX + barWidth / 2, axisBottom - baselineHeight - 20)
         
-        // Category label with better styling and spacing
+        // Category label with multi-line support
         ctx.fillStyle = '#f3f4f6'
         ctx.textBaseline = 'top'
-        ctx.font = `600 ${Math.max(12, Math.round(H * 0.045))}px Inter, system-ui, sans-serif`
+        ctx.font = `600 ${Math.max(10, Math.round(H * 0.035))}px Inter, system-ui, sans-serif`
         
-        // Handle text wrapping for long labels
-        const words = label.split(' ')
-        if (words.length > 1 && ctx.measureText(label).width > groupWidth - 20) {
-          ctx.fillText(words[0], center, axisBottom + 12)
-          ctx.fillText(words.slice(1).join(' '), center, axisBottom + 28)
-        } else {
-          ctx.fillText(label, center, axisBottom + 18)
-        }
+        // Handle multi-line labels
+        const lines = label.split('\n')
+        lines.forEach((line, lineIndex) => {
+          ctx.fillText(line, center, axisBottom + 20 + lineIndex * 14)
+        })
       })
 
-      // Enhanced legend with icons and better spacing
+      // Simple legend without background boxes
+      ctx.font = `600 ${Math.max(10, Math.round(H * 0.032))}px Inter, system-ui, sans-serif`
       ctx.textAlign = 'left'
-      ctx.font = `600 ${Math.max(12, Math.round(H * 0.04))}px Inter, system-ui, sans-serif`
       
-      // Before legend with background
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
+      const legendY = H - pad * 0.6
+      const legendSpacing = 180
+      const totalLegendWidth = legendSpacing
+      const startX = (W - totalLegendWidth) / 2
+      
+      // Red indicator
+      ctx.fillStyle = 'rgba(239, 68, 68, 0.9)'
       ctx.beginPath()
       if (ctx.roundRect) {
-        ctx.roundRect(pad - 5, pad * 0.5, 120, 25, 12)
+        ctx.roundRect(startX, legendY - 8, 14, 14, 4)
       } else {
-        ctx.rect(pad - 5, pad * 0.5, 120, 25)
+        ctx.rect(startX, legendY - 8, 14, 14)
       }
       ctx.fill()
       
-      ctx.fillStyle = beforeGrad
-      ctx.beginPath()
-      if (ctx.roundRect) {
-        ctx.roundRect(pad, pad * 0.6, 16, 12, 3)
-      } else {
-        ctx.rect(pad, pad * 0.6, 16, 12)
-      }
-      ctx.fill()
+      // Before text
       ctx.fillStyle = '#ffffff'
-      ctx.fillText('До внедрения', pad + 24, pad * 0.7)
+      ctx.fillText('До внедрения', startX + 20, legendY + 2)
       
-      // After legend with background  
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
+      // Green indicator
+      const afterStartX = startX + legendSpacing
+      ctx.fillStyle = 'rgba(34, 197, 94, 0.9)'
       ctx.beginPath()
       if (ctx.roundRect) {
-        ctx.roundRect(W - pad - 130, pad * 0.5, 130, 25, 12)
+        ctx.roundRect(afterStartX, legendY - 8, 14, 14, 4)
       } else {
-        ctx.rect(W - pad - 130, pad * 0.5, 130, 25)
+        ctx.rect(afterStartX, legendY - 8, 14, 14)
       }
       ctx.fill()
       
-      ctx.fillStyle = afterGrad
-      ctx.beginPath()
-      if (ctx.roundRect) {
-        ctx.roundRect(W - pad - 125, pad * 0.6, 16, 12, 3)
-      } else {
-        ctx.rect(W - pad - 125, pad * 0.6, 16, 12)
-      }
-      ctx.fill()
+      // After text
       ctx.fillStyle = '#ffffff'
-      ctx.fillText('После внедрения', W - pad - 105, pad * 0.7)
+      ctx.fillText('После внедрения', afterStartX + 20, legendY + 2)
     }
 
     drawChart()
@@ -423,18 +411,20 @@ export const ROIChart: React.FC = () => {
   }, [])
 
   return (
-    <figure className="glass p-6 rounded-2xl">
-      <figcaption className="text-lg font-semibold text-white mb-4 text-center">
+    <figure className="glass p-4 md:p-6 rounded-2xl">
+      <figcaption className="text-base md:text-lg font-semibold text-white mb-3 md:mb-4 text-center">
         Сравнение до и после внедрения
       </figcaption>
-      <canvas 
-        ref={canvasRef}
-        width={980} 
-        height={360} 
-        className="w-full h-auto"
-        role="img" 
-        aria-label="График сравнения показателей до и после"
-      />
+      <div className="w-full overflow-hidden">
+        <canvas 
+          ref={canvasRef}
+          width={980} 
+          height={600} 
+          className="w-full h-auto max-w-full"
+          role="img" 
+          aria-label="График сравнения показателей до и после"
+        />
+      </div>
     </figure>
   )
 }

@@ -2,7 +2,9 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, Zap, Target, TrendingUp, Users } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import ThreeBackground from '../components/ThreeBackground'
+import { Suspense, lazy } from 'react'
+
+const ThreeBackground = lazy(() => import('../components/ThreeBackground'))
 
 const HomePage: React.FC = () => {
   const features = [
@@ -32,7 +34,9 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="relative min-h-screen">
-      <ThreeBackground />
+      <Suspense fallback={<div className="fixed inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 -z-10" />}>
+        <ThreeBackground />
+      </Suspense>
       
       {/* Hero Section */}
       <section className="page-content pb-16 px-4 relative">

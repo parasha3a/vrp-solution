@@ -1,10 +1,20 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { CheckCircle, Shield, Clock, DollarSign, Users2 } from 'lucide-react'
-import ThreeBackground from '../components/ThreeBackground'
-import { MarketChart, ROIChart, AnalyticsStats } from '../components/AnalyticsCharts'
-import { TAMSAMSOMChart, DeliveryMetrics, ROICalculator, TimelineChart } from '../components/BusinessMetrics'
+import { Suspense, lazy } from 'react'
+
+const ThreeBackground = lazy(() => import('../components/ThreeBackground'))
+import { AnalyticsStats } from '../components/AnalyticsCharts'
 import CompetitorAnalysis from '../components/CompetitorAnalysis'
+import LazyComponent from '../components/LazyComponent'
+
+// Lazy load heavy components
+const MarketChart = React.lazy(() => import('../components/AnalyticsCharts').then(module => ({ default: module.MarketChart })))
+const ROIChart = React.lazy(() => import('../components/AnalyticsCharts').then(module => ({ default: module.ROIChart })))
+const TAMSAMSOMChart = React.lazy(() => import('../components/BusinessMetrics').then(module => ({ default: module.TAMSAMSOMChart })))
+const DeliveryMetrics = React.lazy(() => import('../components/BusinessMetrics').then(module => ({ default: module.DeliveryMetrics })))
+const ROICalculator = React.lazy(() => import('../components/BusinessMetrics').then(module => ({ default: module.ROICalculator })))
+const TimelineChart = React.lazy(() => import('../components/BusinessMetrics').then(module => ({ default: module.TimelineChart })))
 
 const AdvantagesPage: React.FC = () => {
 
@@ -61,7 +71,9 @@ const AdvantagesPage: React.FC = () => {
 
   return (
     <div className="relative min-h-screen">
-      <ThreeBackground />
+      <Suspense fallback={<div className="fixed inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 -z-10" />}>
+        <ThreeBackground />
+      </Suspense>
       
       {/* Header */}
       <section className="page-content pb-16 px-4">
@@ -108,7 +120,9 @@ const AdvantagesPage: React.FC = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <MarketChart />
+              <LazyComponent>
+                <MarketChart />
+              </LazyComponent>
             </motion.div>
             
             <motion.div
@@ -117,7 +131,9 @@ const AdvantagesPage: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <ROIChart />
+              <LazyComponent>
+                <ROIChart />
+              </LazyComponent>
             </motion.div>
           </div>
         </div>
@@ -137,7 +153,9 @@ const AdvantagesPage: React.FC = () => {
             <p className="text-xl text-gray-200">Компьютерное зрение для ритейла в Северной Америке - наша ниша</p>
           </motion.div>
 
-          <DeliveryMetrics />
+          <LazyComponent>
+            <DeliveryMetrics />
+          </LazyComponent>
 
           <div className="grid md:grid-cols-2 gap-8 mt-16">
             <motion.div
@@ -146,7 +164,9 @@ const AdvantagesPage: React.FC = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <TAMSAMSOMChart />
+              <LazyComponent>
+                <TAMSAMSOMChart />
+              </LazyComponent>
             </motion.div>
             
             <motion.div
@@ -155,7 +175,9 @@ const AdvantagesPage: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <TimelineChart />
+              <LazyComponent>
+                <TimelineChart />
+              </LazyComponent>
             </motion.div>
           </div>
         </div>
@@ -175,7 +197,9 @@ const AdvantagesPage: React.FC = () => {
             <p className="text-xl text-gray-200">Конкретные расчеты экономии для вашего бизнеса</p>
           </motion.div>
 
-          <ROICalculator />
+          <LazyComponent>
+            <ROICalculator />
+          </LazyComponent>
         </div>
       </section>
 

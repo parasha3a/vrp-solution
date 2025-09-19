@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from 'react'
+import React, { useRef, useMemo, Suspense } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Sphere, MeshDistortMaterial } from '@react-three/drei'
 import * as THREE from 'three'
@@ -8,23 +8,23 @@ const AnimatedSphere: React.FC<{ position: [number, number, number] }> = ({ posi
 
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.2
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.3
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime) * 0.1
+      meshRef.current.rotation.x = state.clock.elapsedTime * 0.1
+      meshRef.current.rotation.y = state.clock.elapsedTime * 0.15
+      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.5) * 0.05
     }
   })
 
   return (
-    <Sphere ref={meshRef} args={[1, 100, 200]} position={position}>
+    <Sphere ref={meshRef} args={[0.8, 32, 32]} position={position}>
       <MeshDistortMaterial
         color={new THREE.Color(0x3b82f6)}
         attach="material"
-        distort={0.3}
-        speed={1.5}
-        roughness={0.2}
-        metalness={0.8}
+        distort={0.2}
+        speed={1}
+        roughness={0.3}
+        metalness={0.6}
         transparent
-        opacity={0.6}
+        opacity={0.4}
       />
     </Sphere>
   )
@@ -35,11 +35,11 @@ const FloatingParticles: React.FC = () => {
 
   const particles = useMemo(() => {
     const temp = []
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 50; i++) {
       temp.push(
-        (Math.random() - 0.5) * 20,
-        (Math.random() - 0.5) * 20,
-        (Math.random() - 0.5) * 20
+        (Math.random() - 0.5) * 15,
+        (Math.random() - 0.5) * 15,
+        (Math.random() - 0.5) * 15
       )
     }
     return new Float32Array(temp)
@@ -47,8 +47,8 @@ const FloatingParticles: React.FC = () => {
 
   useFrame((state) => {
     if (particlesRef.current) {
-      particlesRef.current.rotation.x = state.clock.elapsedTime * 0.05
-      particlesRef.current.rotation.y = state.clock.elapsedTime * 0.075
+      particlesRef.current.rotation.x = state.clock.elapsedTime * 0.02
+      particlesRef.current.rotation.y = state.clock.elapsedTime * 0.03
     }
   })
 
@@ -62,7 +62,7 @@ const FloatingParticles: React.FC = () => {
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial size={0.05} color="#22c55e" transparent opacity={0.8} />
+      <pointsMaterial size={0.03} color="#22c55e" transparent opacity={0.6} />
     </points>
   )
 }
@@ -73,16 +73,18 @@ const ThreeBackground: React.FC = () => {
       <Canvas
         camera={{ position: [0, 0, 5], fov: 75 }}
         style={{ background: 'transparent' }}
+        dpr={[1, 1.5]}
+        performance={{ min: 0.5 }}
       >
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1} />
-        <pointLight position={[-10, -10, -10]} intensity={0.5} color="#22c55e" />
-        
-        <AnimatedSphere position={[-4, 2, -2]} />
-        <AnimatedSphere position={[4, -2, -1]} />
-        <AnimatedSphere position={[0, 3, -3]} />
-        
-        <FloatingParticles />
+        <Suspense fallback={null}>
+          <ambientLight intensity={0.3} />
+          <pointLight position={[5, 5, 5]} intensity={0.8} />
+          
+          <AnimatedSphere position={[-3, 1, -1]} />
+          <AnimatedSphere position={[3, -1, -1]} />
+          
+          <FloatingParticles />
+        </Suspense>
       </Canvas>
     </div>
   )

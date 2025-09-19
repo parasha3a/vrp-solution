@@ -241,7 +241,7 @@
 .mobile-menu-popover .mobile-menu-link {
   display: block;
   padding: 16px 20px;
-  color: var(--hover-text, #ffffff);
+  color: var(--pill-text, #1e40af);
   background-color: var(--pill-bg, #ffffff);
   text-decoration: none;
   font-size: 14px;
@@ -270,12 +270,14 @@
   background-color: rgba(255, 255, 255, 0.9);
   color: var(--pill-text, #1e40af);
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
 .mobile-menu-popover .mobile-menu-link.is-active {
   background-color: rgba(255, 255, 255, 0.95);
   color: var(--pill-text, #1e40af);
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+  font-weight: 700;
 }
 
 /* Hamburger Menu Styles */

@@ -12,7 +12,9 @@ import {
   Brain,
   BarChart3
 } from 'lucide-react'
-import ThreeBackground from '../components/ThreeBackground'
+import { Suspense, lazy } from 'react'
+
+const ThreeBackground = lazy(() => import('../components/ThreeBackground'))
 
 const TechnicalPage: React.FC = () => {
   const techStack = [
@@ -163,7 +165,9 @@ const TechnicalPage: React.FC = () => {
 
   return (
     <div className="relative min-h-screen">
-      <ThreeBackground />
+      <Suspense fallback={<div className="fixed inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 -z-10" />}>
+        <ThreeBackground />
+      </Suspense>
       
       {/* Header */}
       <section className="page-content pb-16 px-4">

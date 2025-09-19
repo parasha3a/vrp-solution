@@ -4,14 +4,14 @@ import { TrendingUp, Clock, DollarSign, Truck, Target, BarChart3 } from 'lucide-
 
 export const TAMSAMSOMChart: React.FC = () => {
   return (
-    <figure className="glass p-8 rounded-3xl border border-white/10 hover:border-white/30 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20">
-      <figcaption className="text-xl font-bold text-white mb-8 text-center flex items-center justify-center gap-3">
+    <figure className="glass p-6 md:p-8 rounded-2xl h-[480px] flex flex-col">
+      <figcaption className="text-lg md:text-xl font-bold text-white mb-6 text-center flex items-center justify-center gap-3">
         <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg flex items-center justify-center">
           🎯
         </div>
         Размер рынка TAM / SAM / SOM
       </figcaption>
-      <svg viewBox="0 0 520 540" className="w-full h-auto max-w-lg mx-auto">
+      <svg viewBox="0 0 600 600" className="w-full flex-1 max-w-2xl mx-auto">
         <defs>
           <radialGradient id="tamGrad" cx="50%" cy="30%">
             <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.8" />
@@ -36,52 +36,46 @@ export const TAMSAMSOMChart: React.FC = () => {
             </feMerge>
           </filter>
           <filter id="shadow">
-            <feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="#000" floodOpacity="0.3"/>
+            <feDropShadow dx="0" dy="1" stdDeviation="2" floodColor="#000" floodOpacity="0.5"/>
           </filter>
         </defs>
         
         {/* Animated circles with glow */}
-        <circle cx="260" cy="260" r="220" fill="url(#tamGrad)" stroke="#60a5fa" strokeWidth="3" filter="url(#glow)" opacity="0.9">
+        <circle cx="300" cy="300" r="250" fill="url(#tamGrad)" stroke="#60a5fa" strokeWidth="3" filter="url(#glow)" opacity="0.9">
           <animate attributeName="stroke-width" values="3;5;3" dur="3s" repeatCount="indefinite"/>
         </circle>
-        <circle cx="260" cy="260" r="160" fill="url(#samGrad)" stroke="#22c55e" strokeWidth="3" filter="url(#glow)" opacity="0.95">
+        <circle cx="300" cy="300" r="180" fill="url(#samGrad)" stroke="#22c55e" strokeWidth="3" filter="url(#glow)" opacity="0.95">
           <animate attributeName="stroke-width" values="3;5;3" dur="2.5s" repeatCount="indefinite"/>
         </circle>
-        <circle cx="260" cy="260" r="90" fill="url(#somGrad)" stroke="#f59e0b" strokeWidth="4" filter="url(#shadow)">
+        <circle cx="300" cy="300" r="100" fill="url(#somGrad)" stroke="#f59e0b" strokeWidth="4" filter="url(#shadow)">
           <animate attributeName="stroke-width" values="4;6;4" dur="2s" repeatCount="indefinite"/>
         </circle>
         
-        {/* Enhanced text with backgrounds and better positioning */}
-        <rect x="140" y="45" width="240" height="35" rx="18" fill="rgba(0,0,0,0.85)" stroke="rgba(96, 165, 250, 0.5)" strokeWidth="1" />
-        <text x="260" y="68" textAnchor="middle" className="fill-white text-base font-bold">
+        {/* Enhanced text positioning without backgrounds */}
+        <text x="300" y="60" textAnchor="middle" className="fill-white text-lg font-bold" filter="url(#shadow)">
           Северная Америка: $1.25 млрд
         </text>
         
-        <rect x="120" y="115" width="280" height="35" rx="18" fill="rgba(0,0,0,0.8)" stroke="rgba(34, 197, 94, 0.5)" strokeWidth="1" />
-        <text x="260" y="138" textAnchor="middle" className="fill-white text-sm font-semibold">
+        <text x="300" y="180" textAnchor="middle" className="fill-white text-base font-semibold" filter="url(#shadow)">
           Компьютерное зрение для ритейла
         </text>
         
-        <rect x="130" y="370" width="260" height="35" rx="18" fill="rgba(0,0,0,0.9)" stroke="rgba(251, 191, 36, 0.7)" strokeWidth="2" />
-        <text x="260" y="393" textAnchor="middle" className="fill-yellow-200 text-base font-bold">
+        <text x="300" y="480" textAnchor="middle" className="fill-yellow-200 text-lg font-bold" filter="url(#shadow)">
           Наша цель: $12.5 млн/год (1%)
         </text>
         
-        {/* Legend with enhanced styling and better spacing */}
-        <g transform="translate(40, 460)">
-          <rect x="-15" y="-12" width="140" height="24" rx="12" fill="rgba(0,0,0,0.7)" />
+        {/* Legend with improved spacing and no backgrounds */}
+        <g transform="translate(100, 540)">
           <circle cx="0" cy="0" r="10" fill="url(#tamGrad)" stroke="#60a5fa" strokeWidth="2"/>
-          <text x="18" y="5" className="fill-white text-sm font-semibold">TAM - Общий рынок</text>
+          <text x="20" y="5" className="fill-white text-base font-semibold" filter="url(#shadow)">TAM - Общий рынок</text>
         </g>
-        <g transform="translate(190, 460)">
-          <rect x="-15" y="-12" width="130" height="24" rx="12" fill="rgba(0,0,0,0.7)" />
+        <g transform="translate(300, 540)">
           <circle cx="0" cy="0" r="10" fill="url(#samGrad)" stroke="#22c55e" strokeWidth="2"/>
-          <text x="18" y="5" className="fill-white text-sm font-semibold">SAM - Наша ниша</text>
+          <text x="20" y="5" className="fill-white text-base font-semibold" filter="url(#shadow)">SAM - Наша ниша</text>
         </g>
-        <g transform="translate(340, 460)">
-          <rect x="-15" y="-12" width="100" height="24" rx="12" fill="rgba(0,0,0,0.7)" />
+        <g transform="translate(480, 540)">
           <circle cx="0" cy="0" r="10" fill="url(#somGrad)" stroke="#f59e0b" strokeWidth="2"/>
-          <text x="18" y="5" className="fill-white text-sm font-semibold">SOM - Цель</text>
+          <text x="20" y="5" className="fill-white text-base font-semibold" filter="url(#shadow)">SOM - Цель</text>
         </g>
       </svg>
     </figure>
@@ -237,10 +231,10 @@ export const ROICalculator: React.FC = () => {
 
 export const TimelineChart: React.FC = () => {
   const phases = [
-    { quarter: 'Q1', title: 'Тестирование', color: '#3b82f6' },
-    { quarter: 'Q2', title: 'Создание тарифов', color: '#22c55e' },
-    { quarter: 'Q3', title: 'Рост продаж', color: '#f59e0b' },
-    { quarter: 'Q4', title: 'Масштабирование', color: '#8b5cf6' }
+    { quarter: 'Q1', title: 'Тестирование', color: '#3b82f6', gradient: ['#60a5fa', '#3b82f6'] },
+    { quarter: 'Q2', title: 'Создание тарифов', color: '#22c55e', gradient: ['#4ade80', '#22c55e'] },
+    { quarter: 'Q3', title: 'Рост продаж', color: '#f59e0b', gradient: ['#fbbf24', '#f59e0b'] },
+    { quarter: 'Q4', title: 'Масштабирование', color: '#8b5cf6', gradient: ['#a78bfa', '#8b5cf6'] }
   ]
 
   return (
@@ -249,34 +243,77 @@ export const TimelineChart: React.FC = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
-      className="glass p-8 rounded-2xl"
+      className="glass p-6 md:p-8 rounded-2xl h-[480px] flex flex-col"
     >
-      <h3 className="text-xl font-bold text-white mb-8 text-center">
+      <h3 className="text-lg md:text-xl font-bold text-white mb-6 text-center">
         План развития на год
       </h3>
       
-      <svg viewBox="0 0 700 140" className="w-full h-auto">
-        <line x1="40" y1="70" x2="660" y2="70" stroke="#374151" strokeWidth="2" />
+      <svg viewBox="0 0 800 300" className="w-full flex-1">
+        <defs>
+          {phases.map((phase, index) => (
+            <linearGradient key={`grad-${index}`} id={`phase-gradient-${index}`} x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor={phase.gradient[0]} stopOpacity="0.2" />
+              <stop offset="100%" stopColor={phase.gradient[1]} stopOpacity="0.1" />
+            </linearGradient>
+          ))}
+          <filter id="timeline-shadow">
+            <feDropShadow dx="0" dy="1" stdDeviation="2" floodColor="#000" floodOpacity="0.3"/>
+          </filter>
+        </defs>
+        
+        <line 
+          x1="80" y1="150" x2="720" y2="150" 
+          stroke="rgba(255,255,255,0.2)" 
+          strokeWidth="2" 
+          strokeDasharray="4 4"
+        />
         
         {phases.map((phase, index) => {
-          const x = 60 + index * 180
+          const x = 120 + index * 180
           return (
             <g key={index}>
-              <circle cx={x} cy="70" r="8" fill={phase.color} />
-              <text x={x} y="100" textAnchor="middle" className="fill-gray-300 text-sm font-medium">
+              {/* Фоновый прямоугольник */}
+              <rect 
+                x={x - 80} 
+                y="90"
+                width="160" 
+                height="120" 
+                rx="12"
+                fill={`url(#phase-gradient-${index})`}
+                stroke={phase.color}
+                strokeWidth="1"
+                opacity="0.8"
+              />
+              
+              {/* Точка на таймлайне */}
+              <circle 
+                cx={x} 
+                cy="150" 
+                r="8" 
+                fill={phase.color}
+                filter="url(#timeline-shadow)"
+              />
+              
+              {/* Квартал */}
+              <text 
+                x={x} 
+                y="190" 
+                textAnchor="middle" 
+                className="fill-white text-base font-semibold"
+                filter="url(#timeline-shadow)"
+              >
                 {phase.quarter}
               </text>
-              <rect 
-                x={x - 60} 
-                y="45" 
-                width="120" 
-                height="24" 
-                rx="12" 
-                fill={`${phase.color}33`} 
-                stroke={phase.color} 
-                strokeWidth="1"
-              />
-              <text x={x} y="60" textAnchor="middle" className="fill-white text-xs font-medium">
+              
+              {/* Название этапа */}
+              <text 
+                x={x} 
+                y="125" 
+                textAnchor="middle" 
+                className="fill-white text-sm font-medium"
+                filter="url(#timeline-shadow)"
+              >
                 {phase.title}
               </text>
             </g>
