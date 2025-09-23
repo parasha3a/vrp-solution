@@ -21,7 +21,7 @@ const App: React.FC = () => {
   ]
 
   return (
-    <Router basename="/vrp-solution">
+    <Router basename={import.meta.env.MODE === 'production' ? "/vrp-solution" : ""}>
       <div className="App min-h-screen">
         <PillNav 
           items={navItems}
