@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import PillNav from './components/PillNav'
+import Footer from './components/Footer'
 import LoadingSpinner from './components/LoadingSpinner'
 import { useScrollAnimations } from './hooks/useScrollAnimations'
 
@@ -38,6 +39,7 @@ const App: React.FC = () => {
             </Routes>
           </Suspense>
         </main>
+        <Footer />
       </div>
     </Router>
   )
