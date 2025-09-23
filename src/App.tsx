@@ -21,14 +21,14 @@ const App: React.FC = () => {
   ]
 
   return (
-    <Router>
+    <Router basename="/vrp-solution">
       <div className="App min-h-screen">
         <PillNav 
           items={navItems}
-          baseColor="#3b82f6"
-          pillColor="#ffffff"
-          hoveredPillTextColor="#ffffff"
-          pillTextColor="#1e40af"
+          baseColor="#1e293b"
+          pillColor="#f8fafc"
+          hoveredPillTextColor="#f8fafc"
+          pillTextColor="#334155"
         />
         <main>
           <Suspense fallback={<LoadingSpinner />}>
