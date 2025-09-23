@@ -64,7 +64,7 @@ export const MarketChart: React.FC = () => {
     }
 
     const drawChart = () => {
-      const ratio = 0.5
+      const ratio = 0.6
       const result = setupCanvas(canvas, ratio)
       if (!result.ctx) return
       
@@ -185,7 +185,7 @@ export const MarketChart: React.FC = () => {
   }, [])
 
   return (
-    <figure className="glass p-4 md:p-6 rounded-2xl">
+    <figure className="glass p-6 md:p-8 rounded-2xl">
       <figcaption className="text-base md:text-lg font-semibold text-white mb-3 md:mb-4 text-center">
         Показатели эффективности VRP Solution
       </figcaption>
@@ -193,7 +193,7 @@ export const MarketChart: React.FC = () => {
         <canvas 
           ref={canvasRef}
           width={980} 
-          height={490} 
+          height={600} 
           className="w-full h-auto max-w-full"
           role="img" 
           aria-label="График показателей эффективности"
@@ -226,7 +226,7 @@ export const ROIChart: React.FC = () => {
     }
 
     const drawChart = () => {
-      const ratio = 0.55
+      const ratio = 0.6
       const result = setupCanvas(canvas, ratio)
       if (!result.ctx) return
       
@@ -411,7 +411,7 @@ export const ROIChart: React.FC = () => {
   }, [])
 
   return (
-    <figure className="glass p-4 md:p-6 rounded-2xl">
+    <figure className="glass p-6 md:p-8 rounded-2xl">
       <figcaption className="text-base md:text-lg font-semibold text-white mb-3 md:mb-4 text-center">
         Сравнение до и после внедрения
       </figcaption>
