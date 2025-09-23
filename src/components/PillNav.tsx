@@ -25,14 +25,14 @@ const PillNav: React.FC<PillNavProps> = ({
   items,
   className = "",
   ease = "power3.easeOut",
-  baseColor = "#3b82f6", // Primary blue
-  pillColor = "#ffffff", // White
-  hoveredPillTextColor = "#ffffff", // White text on hover
+  baseColor = "#1e293b", // Slate 800 - более элегантный тёмный цвет
+  pillColor = "#f8fafc", // Slate 50 - мягкий белый
+  hoveredPillTextColor = "#f8fafc", // Slate 50 - белый текст при ховере
   pillTextColor,
   onMobileMenuClick,
   initialLoadAnimation = true,
 }) => {
-  const resolvedPillTextColor = pillTextColor ?? "#1e40af"; // Dark blue by default
+  const resolvedPillTextColor = pillTextColor ?? "#334155"; // Slate 700 - более мягкий тёмный текст
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const circleRefs = useRef<Array<HTMLSpanElement | null>>([]);
   const tlRefs = useRef<Array<gsap.core.Timeline | null>>([]);

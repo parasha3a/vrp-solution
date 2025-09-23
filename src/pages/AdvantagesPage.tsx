@@ -48,24 +48,45 @@ const AdvantagesPage: React.FC = () => {
   const competitors = [
     {
       name: 'Wildberries',
-      type: 'Маркетплейс',
-      strengths: ['Огромная клиентская база', 'Развитая логистика'],
-      weaknesses: ['Высокие комиссии (до 25%)', 'Зависимость от их экосистемы'],
-      ourAdvantage: 'Независимая оптимизация, работа с любыми службами доставки'
+      type: 'Маркетплейс (47% рынка)',
+      strengths: ['2,5 трлн руб оборот 2024', 'Огромная клиентская база', '40+ категорий товаров'],
+      weaknesses: ['Высокие комиссии (до 25%)', 'Зависимость от их экосистемы', 'Неэффективная оптимизация маршрутов'],
+      ourAdvantage: 'Снижение затрат на логистику на 35%, независимая работа с любыми службами доставки'
     },
     {
       name: 'OZON',
-      type: 'Маркетплейс + логистика',
-      strengths: ['Технологичность', 'Собственная логистика'],
-      weaknesses: ['Закрытая система', 'Высокая стоимость интеграции'],
-      ourAdvantage: 'Открытая API, быстрая интеграция за 2 недели'
+      type: 'Маркетплейс + логистика (34,4% рынка)',
+      strengths: ['2,8 трлн руб оборот 2024', '3,5 млн м² складов', '600к+ активных продавцов'],
+      weaknesses: ['Закрытая система VRP', 'Высокая стоимость интеграции', 'Долгие сроки настройки (2-6 месяцев)'],
+      ourAdvantage: 'Открытая API, быстрая интеграция за 2 недели, экономия на логистике до 40%'
     },
     {
       name: 'Яндекс.Маркет',
-      type: 'Поисково-рекомендательная система',
-      strengths: ['Алгоритмы поиска', 'Интеграция с Яндекс.Доставкой'],
-      weaknesses: ['Нет специализации на VRP', 'Ограниченная кастомизация'],
-      ourAdvantage: 'Специализированные VRP алгоритмы с 99.5% точностью'
+      type: 'Поисково-рекомендательная система + логистика',
+      strengths: ['Алгоритмы поиска', 'Интеграция с Яндекс.Доставкой', 'Go-модель'],
+      weaknesses: ['Нет специализации на VRP', 'Ограниченная кастомизация', 'Точность VRP только 85-90%'],
+      ourAdvantage: 'Специализированные VRP алгоритмы с 99.5% точностью, ROI 900%'
+    },
+    {
+      name: 'Мегамаркет',
+      type: 'Маркетплейс Сбера',
+      strengths: ['Банковская экосистема', 'Развитая финтех-инфраструктура'],
+      weaknesses: ['Молодая платформа', 'Ограниченная логистическая сеть', 'Нет VRP оптимизации'],
+      ourAdvantage: 'Готовое VRP решение для быстрого масштабирования логистики'
+    },
+    {
+      name: 'AliExpress Russia',
+      type: 'Международный маркетплейс',
+      strengths: ['Глобальный опыт', 'Широкий ассортимент'],
+      weaknesses: ['Длительная доставка', 'Сложности с возвратами', 'Неадаптированная логистика'],
+      ourAdvantage: 'Локальная оптимизация маршрутов для российских условий, сокращение времени доставки на 50%'
+    },
+    {
+      name: 'СДЭК',
+      type: 'Логистический оператор',
+      strengths: ['42000+ пунктов выдачи', 'Собственная курьерская служба', 'Интеграция с маркетплейсами'],
+      weaknesses: ['Стандартные VRP алгоритмы', 'Высокая стоимость доставки', 'Ограниченная оптимизация маршрутов'],
+      ourAdvantage: 'Повышение эффективности существующей сети на 40%, снижение затрат на топливо и время доставки'
     }
   ]
 
@@ -149,8 +170,127 @@ const AdvantagesPage: React.FC = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-white mb-6">Рыночные возможности и бизнес-модель</h2>
-            <p className="text-xl text-gray-200">Компьютерное зрение для ритейла в Северной Америке - наша ниша</p>
+            <h2 className="text-4xl font-bold text-white mb-6">Анализ российского рынка e-commerce</h2>
+            <p className="text-xl text-gray-200">Рынок 7,4 трлн рублей с огромным потенциалом для VRP оптимизации</p>
+            
+            <div className="grid md:grid-cols-3 gap-8 mt-12">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="glass p-6 rounded-2xl"
+              >
+                <h3 className="text-3xl font-bold text-primary-400 mb-2">7,4 трлн ₽</h3>
+                <p className="text-white font-semibold mb-2">Объем рынка 2024</p>
+                <p className="text-gray-300 text-sm">Устойчивый рост российского e-commerce</p>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="glass p-6 rounded-2xl"
+              >
+                <h3 className="text-3xl font-bold text-accent-400 mb-2">81%</h3>
+                <p className="text-white font-semibold mb-2">Доля маркетплейсов</p>
+                <p className="text-gray-300 text-sm">Wildberries, Ozon, Яндекс.Маркет, Мегамаркет</p>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="glass p-6 rounded-2xl"
+              >
+                <h3 className="text-3xl font-bold text-primary-400 mb-2">71%</h3>
+                <p className="text-white font-semibold mb-2">Одежда и обувь</p>
+                <p className="text-gray-300 text-sm">Самая популярная категория товаров</p>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Подробный анализ проблем логистики */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="mt-20"
+          >
+            <h3 className="text-3xl font-bold text-white mb-8 text-center">Проблемы логистики российского e-commerce</h3>
+            
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              <div className="glass p-8 rounded-2xl">
+                <h4 className="text-xl font-bold text-red-400 mb-6">Основные проблемы отрасли</h4>
+                <div className="space-y-4">
+                  <div className="flex items-start">
+                    <span className="text-red-400 mr-3 mt-1">•</span>
+                    <div>
+                      <strong className="text-white">Высокие затраты на последнюю милю:</strong>
+                      <p className="text-gray-300 text-sm mt-1">До 40% от общей стоимости доставки</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="text-red-400 mr-3 mt-1">•</span>
+                    <div>
+                      <strong className="text-white">Неоптимальные маршруты:</strong>
+                      <p className="text-gray-300 text-sm mt-1">Потери времени и топлива до 30%</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="text-red-400 mr-3 mt-1">•</span>
+                    <div>
+                      <strong className="text-white">Сложности интеграции:</strong>
+                      <p className="text-gray-300 text-sm mt-1">Закрытые API маркетплейсов</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="text-red-400 mr-3 mt-1">•</span>
+                    <div>
+                      <strong className="text-white">Низкая точность планирования:</strong>
+                      <p className="text-gray-300 text-sm mt-1">Стандартные решения - 85-90%</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="glass p-8 rounded-2xl border-2 border-primary-400/30">
+                <h4 className="text-xl font-bold text-green-400 mb-6">Возможности VRP Solution</h4>
+                <div className="space-y-4">
+                  <div className="flex items-start">
+                    <span className="text-green-400 mr-3 mt-1">✓</span>
+                    <div>
+                      <strong className="text-white">Снижение затрат на 35-40%:</strong>
+                      <p className="text-gray-300 text-sm mt-1">Оптимизация последней мили</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="text-green-400 mr-3 mt-1">✓</span>
+                    <div>
+                      <strong className="text-white">Точность маршрутов 99.5%:</strong>
+                      <p className="text-gray-300 text-sm mt-1">Максимальная эффективность</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="text-green-400 mr-3 mt-1">✓</span>
+                    <div>
+                      <strong className="text-white">Быстрая интеграция:</strong>
+                      <p className="text-gray-300 text-sm mt-1">Открытая API за 2 недели</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="text-green-400 mr-3 mt-1">✓</span>
+                    <div>
+                      <strong className="text-white">ROI 900% за год:</strong>
+                      <p className="text-gray-300 text-sm mt-1">Доказанная эффективность</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           <LazyComponent>
@@ -258,8 +398,82 @@ const AdvantagesPage: React.FC = () => {
           >
             <h2 className="text-4xl font-bold text-white mb-6">Сравнение с конкурентами</h2>
             <p className="text-xl text-gray-200">
-              Анализ российского рынка: WB, OZON, Яндекс.Маркет vs VRP Solution
+              Детальный анализ российских маркетплейсов и их проблем в области VRP
             </p>
+            
+            <div className="grid md:grid-cols-2 gap-8 mt-12 mb-12">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="glass p-8 rounded-2xl"
+              >
+                <h3 className="text-2xl font-bold text-white mb-6">Проблемы существующих решений</h3>
+                <ul className="space-y-4">
+                  <li className="flex items-start text-gray-200">
+                    <span className="text-red-400 mr-3 font-bold">•</span>
+                    <div>
+                      <strong>Низкая точность VRP:</strong> Стандартные решения дают только 85-90% точности
+                    </div>
+                  </li>
+                  <li className="flex items-start text-gray-200">
+                    <span className="text-red-400 mr-3 font-bold">•</span>
+                    <div>
+                      <strong>Долгая интеграция:</strong> 2-6 месяцев на настройку против наших 2 недель
+                    </div>
+                  </li>
+                  <li className="flex items-start text-gray-200">
+                    <span className="text-red-400 mr-3 font-bold">•</span>
+                    <div>
+                      <strong>Закрытые системы:</strong> Зависимость от экосистемы маркетплейса
+                    </div>
+                  </li>
+                  <li className="flex items-start text-gray-200">
+                    <span className="text-red-400 mr-3 font-bold">•</span>
+                    <div>
+                      <strong>Высокие затраты:</strong> До 25% комиссии + логистические расходы
+                    </div>
+                  </li>
+                </ul>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="glass p-8 rounded-2xl border-2 border-primary-400/30"
+              >
+                <h3 className="text-2xl font-bold text-primary-300 mb-6">Наши преимущества VRP Solution</h3>
+                <ul className="space-y-4">
+                  <li className="flex items-start text-gray-200">
+                    <span className="text-green-400 mr-3 font-bold">✓</span>
+                    <div>
+                      <strong>99.5% точность VRP:</strong> Максимальная эффективность маршрутизации
+                    </div>
+                  </li>
+                  <li className="flex items-start text-gray-200">
+                    <span className="text-green-400 mr-3 font-bold">✓</span>
+                    <div>
+                      <strong>Интеграция за 2 недели:</strong> Быстрый запуск и экономия времени
+                    </div>
+                  </li>
+                  <li className="flex items-start text-gray-200">
+                    <span className="text-green-400 mr-3 font-bold">✓</span>
+                    <div>
+                      <strong>Открытая платформа:</strong> Работа с любыми службами доставки
+                    </div>
+                  </li>
+                  <li className="flex items-start text-gray-200">
+                    <span className="text-green-400 mr-3 font-bold">✓</span>
+                    <div>
+                      <strong>ROI 900%:</strong> Доказанная экономическая эффективность
+                    </div>
+                  </li>
+                </ul>
+              </motion.div>
+            </div>
           </motion.div>
 
           <CompetitorAnalysis competitors={competitors} />

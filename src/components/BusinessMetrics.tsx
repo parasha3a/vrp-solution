@@ -53,15 +53,15 @@ export const TAMSAMSOMChart: React.FC = () => {
         
         {/* Enhanced text positioning without backgrounds */}
         <text x="300" y="60" textAnchor="middle" className="fill-white text-lg font-bold" filter="url(#shadow)">
-          Северная Америка: $1.25 млрд
+          Российский рынок: 320 млрд ₽
         </text>
         
         <text x="300" y="180" textAnchor="middle" className="fill-white text-base font-semibold" filter="url(#shadow)">
-          Компьютерное зрение для ритейла
+          VRP решения для логистики
         </text>
         
         <text x="300" y="480" textAnchor="middle" className="fill-yellow-200 text-lg font-bold" filter="url(#shadow)">
-          Наша цель: $12.5 млн/год (1%)
+          Наша цель: 3.2 млрд ₽/год (1%)
         </text>
         
         {/* Legend with improved spacing and no backgrounds */}
@@ -86,21 +86,21 @@ export const DeliveryMetrics: React.FC = () => {
   const metrics = [
     {
       icon: <Truck className="w-8 h-8 text-primary-400" />,
-      title: '$1.25B',
+      title: '320 млрд ₽',
       subtitle: 'размер ниши SAM',
-      description: 'Компьютерное зрение для ритейла в Северной Америке'
+      description: 'VRP решения для логистики в России'
     },
     {
       icon: <Target className="w-8 h-8 text-accent-400" />,
       title: '1%',
       subtitle: 'целевая доля рынка',
-      description: 'за 3 года = $12.5 млн выручки'
+      description: 'за 3 года = 3.2 млрд ₽ выручки'
     },
     {
       icon: <TrendingUp className="w-8 h-8 text-primary-400" />,
       title: '6:1',
       subtitle: 'LTV к CAC',
-      description: 'CAC $5K, LTV $30K - рентабельная модель'
+      description: 'CAC 150К ₽, LTV 900К ₽ - рентабельная модель'
     },
     {
       icon: <DollarSign className="w-8 h-8 text-accent-400" />,

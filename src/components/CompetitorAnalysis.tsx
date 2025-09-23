@@ -81,9 +81,9 @@ export const MarketPositioning: React.FC = () => {
     },
     {
       icon: <DollarSign className="w-8 h-8 text-accent-400" />,
-      title: '900%',
-      subtitle: 'ROI клиента',
-      description: 'доказанная экономическая эффективность'
+      title: '35-40%',
+      subtitle: 'снижение затрат',
+      description: 'на логистику и доставку'
     },
     {
       icon: <Clock className="w-8 h-8 text-primary-400" />,
@@ -93,9 +93,9 @@ export const MarketPositioning: React.FC = () => {
     },
     {
       icon: <TrendingUp className="w-8 h-8 text-accent-400" />,
-      title: '>80%',
-      subtitle: 'валовая маржа',
-      description: 'рентабельная бизнес-модель'
+      title: '7.4 трлн ₽',
+      subtitle: 'рынок РФ',
+      description: 'потенциал для VRP решений'
     }
   ]
 
@@ -192,13 +192,13 @@ export const BusinessModel: React.FC = () => {
         <div className="grid md:grid-cols-3 gap-4 text-center">
           <div>
             <h4 className="text-accent-400 font-semibold">CAC</h4>
-            <p className="text-2xl font-bold text-white">$5,000</p>
-            <p className="text-gray-300 text-sm">стоимость привлечения</p>
+            <p className="text-2xl font-bold text-white">150 000 ₽</p>
+            <p className="text-gray-300 text-sm">стоимость привлечения клиента</p>
           </div>
           <div>
             <h4 className="text-primary-400 font-semibold">LTV</h4>
-            <p className="text-2xl font-bold text-white">$30,000</p>
-            <p className="text-gray-300 text-sm">пожизненная ценность</p>
+            <p className="text-2xl font-bold text-white">900 000 ₽</p>
+            <p className="text-gray-300 text-sm">пожизненная ценность клиента</p>
           </div>
           <div>
             <h4 className="text-accent-400 font-semibold">Соотношение</h4>
@@ -220,7 +220,7 @@ const CompetitorAnalysis: React.FC<CompetitorAnalysisProps> = ({ competitors }) 
     <div className="space-y-8">
       <MarketPositioning />
       
-      <div className="grid md:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {competitors.map((competitor, index) => (
           <CompetitorCard key={competitor.name} competitor={competitor} index={index} />
         ))}
